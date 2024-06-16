@@ -24,3 +24,7 @@ export const typesColors = {
 export const getTypeColor = (type: string) => {
     return typesColors[type as keyof typeof typesColors] || 'light';
 };
+
+export const formatNumber = (num: number) => {
+    return num.toString().padStart(3, '0');
+};
