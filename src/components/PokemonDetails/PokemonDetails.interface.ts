@@ -1,15 +1,22 @@
+import { NavigationProp, ParamListBase, RouteProp } from '@react-navigation/native';
+
+export type RootStackParamList = {
+    Home: { item: IItem }
+    PokemonDetails: { item: IItem }
+};
+
 export interface IPokemonDetails {
-    route: any
-    navigation: any
+    route: RouteProp<RootStackParamList>
+    navigation: NavigationProp<ParamListBase>
 }
 
 export interface IItem {
     name: string
-    types: [IType]
-    abilities: []
+    types: IType[]
+    abilities: IAbilities[]
     id: number
     sprites: IOther
-    stats: [IStats]
+    stats: IStats[]
 }
 
 export interface IType {

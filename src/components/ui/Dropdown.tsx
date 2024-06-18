@@ -1,7 +1,8 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
+import { IDropdown } from './Dropdown.interface'
 
-const Dropdown = ({ filterByType, types }) =>
+const Dropdown = ({ filterByType, types }: IDropdown) =>
     <select
         onChange={filterByType}
         name="pokemons"

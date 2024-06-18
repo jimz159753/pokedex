@@ -6,11 +6,11 @@ export interface IHome {
 
 export interface IItem {
     name: string
-    types: [IType]
+    types: IType[]
     abilities: []
     id: number
     sprites: IOther
-    stats: [IStats]
+    stats: IStats[]
 }
 
 export interface IType {

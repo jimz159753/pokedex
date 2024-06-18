@@ -22,7 +22,7 @@ const Home = ({ navigation }: IHome) => {
         setTypes(types)
     }
 
-    const filterByType = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    const filterByType = (ev: React.ChangeEvent<HTMLSelectElement>) => {
         const filter = ev.target.value
         const newList = pokemons.filter(pokemon => pokemon.types.some(innerType => innerType.type.name === filter))
         setFilterPokemons(newList)

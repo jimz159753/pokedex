@@ -2,8 +2,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './screens/Home';
 import PokemonDetails from './components/PokemonDetails';
+import { RootStackParamList } from './components/PokemonDetails/PokemonDetails.interface';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const Routes = () =>
     <NavigationContainer>

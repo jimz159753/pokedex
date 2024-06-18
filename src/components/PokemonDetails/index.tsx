@@ -12,12 +12,14 @@ export default function PokemonDetails({ route, navigation }: IPokemonDetails) {
 
     return (
         <View>
-            <TouchableHighlight style={styles.item} onPress={() => navigation.navigate('PokemonDetails', { item: item })}>
-                <Image style={styles.pokeball} source={pokeballImg} />
-                <Image style={styles.image} source={{ uri: item.sprites.other['official-artwork'].front_default }} />
-                <View style={styles.header}>
-                    <Text style={[styles.text]}>{item.name}</Text>
-                    <Text style={styles.text}>#{number}</Text>
+            <TouchableHighlight onPress={() => navigation.navigate('PokemonDetails', { item: item })}>
+                <View style={styles.item}>
+                    <Image style={styles.pokeball} source={pokeballImg} />
+                    <Image style={styles.image} source={{ uri: item.sprites.other['official-artwork'].front_default }} />
+                    <View style={styles.header}>
+                        <Text style={[styles.text]}>{item.name}</Text>
+                        <Text style={styles.text}>#{number}</Text>
+                    </View>
                 </View>
             </TouchableHighlight>
             <View style={styles.details}>
@@ -32,14 +34,14 @@ export default function PokemonDetails({ route, navigation }: IPokemonDetails) {
                 </View>
                 <View style={styles.stats}>
                     {
-                        item.stats.map((el: IStats) => <Text style={styles.textDescription}>{el.stat.name}: {el.base_stat}</Text>)
+                        item.stats.map((el: IStats) => <Text key={el.stat.name} style={styles.textDescription}>{el.stat.name}: {el.base_stat}</Text>)
                     }
                 </View>
                 <View style={styles.abilities}>
                     <Text style={styles.abilitiesHeader}>Abilities</Text>
                     <View style={styles.abilitiesContainer}>
                         {
-                            item.abilities.map((el: IAbilities) => <Text style={styles.textDescription}>{el.ability.name}</Text>)
+                            item.abilities.map((el: IAbilities) => <Text key={el.ability.name} style={styles.textDescription}>{el.ability.name}</Text>)
                         }
                     </View>
                 </View>

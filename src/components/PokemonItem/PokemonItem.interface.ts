@@ -1,15 +1,17 @@
+import { NavigationProp, ParamListBase } from '@react-navigation/native';
+
 export interface IPokemonItem {
-    navigation: any
+    navigation: NavigationProp<ParamListBase>
     item: IItem
 }
 
 export interface IItem {
     name: string
-    types: [IType]
-    abilities: []
+    types: IType[]
+    abilities: IAbilities[]
     id: number
     sprites: IOther
-    stats: [IStats]
+    stats: IStats[]
 }
 
 export interface IType {
