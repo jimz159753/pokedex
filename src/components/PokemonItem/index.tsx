@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native'
 import { formatNumber, getTypeColor } from '../../utils/helpers'
 import { IPokemonItem } from './PokemonItem.interface'
 
@@ -9,18 +9,20 @@ const PokemonItem = ({ item, navigation }: IPokemonItem) => {
     const number = formatNumber(item.id)
 
     return (
-        <View style={styles.item} onClick={() => navigation.navigate('PokemonDetails', { item: item })}>
-            <Image style={styles.image} source={{ uri: item.sprites.other['official-artwork'].front_default }} />
-            <View style={[styles.info, styles.header]}>
-                <Text style={[styles.text, styles.name]}>{item.name}</Text>
-                <Text style={styles.text}>#{number}</Text>
+        <TouchableHighlight style={styles.item} onPress={() => navigation.navigate('PokemonDetails', { item: item })}>
+            <View>
+                <Image style={styles.image} source={{ uri: item.sprites.other['official-artwork'].front_default }} />
+                <View style={styles.header}>
+                    <Text style={[styles.text, styles.name]}>{item.name}</Text>
+                    <Text style={styles.text}>#{number}</Text>
+                </View>
+                <View style={styles.types}>
+                    {
+                        item.types?.map(el => <Text key={el.slot} style={[styles.text, styles.type]}>{el.type.name}</Text>)
+                    }
+                </View>
             </View>
-            <View style={styles.types}>
-                {
-                    item.types?.map(el => <Text key={el.slot} style={[styles.text, styles.type]}>{el.type.name}</Text>)
-                }
-            </View>
-        </View>
+        </TouchableHighlight>
     )
 }
 

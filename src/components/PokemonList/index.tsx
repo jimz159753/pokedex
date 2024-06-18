@@ -1,11 +1,12 @@
 import { StyleSheet, FlatList } from 'react-native';
 import PokemonItem from '../PokemonItem';
+import { IPokemonList } from './PokemonList.interface';
 
-const PokemonList = ({ pokemons, navigation }) =>
+const PokemonList = ({ pokemons, navigation }: IPokemonList) =>
     <FlatList
         data={pokemons}
         renderItem={(pokemon) => <PokemonItem item={pokemon.item} navigation={navigation} />}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.name}
         numColumns={2}
         columnWrapperStyle={styles.row}
     />

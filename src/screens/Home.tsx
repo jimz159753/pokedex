@@ -3,10 +3,11 @@ import { SafeAreaView, StyleSheet, ScrollView } from 'react-native'
 import PokemonList from '../components/PokemonList'
 import { getPokemons, getTypes } from '../api/api'
 import DropDown from '../components/ui/Dropdown'
+import { IHome, IItem } from './Home.interface'
 
-export default function Home({ navigation }) {
-    const [pokemons, setPokemons] = useState([])
-    const [filterPokemons, setFilterPokemons] = useState([])
+const Home = ({ navigation }: IHome) => {
+    const [pokemons, setPokemons] = useState<IItem[]>([])
+    const [filterPokemons, setFilterPokemons] = useState<IItem[]>([])
     const [types, setTypes] = useState([])
 
     useEffect(() => {
@@ -14,14 +15,14 @@ export default function Home({ navigation }) {
     }, [])
 
     const fetchData = async () => {
-        const result = await getPokemons()
+        const result: IItem[] = await getPokemons()
         const types = await getTypes()
         setPokemons(result)
         setFilterPokemons(result)
         setTypes(types)
     }
 
-    const filterByType = (ev) => {
+    const filterByType = (ev: React.ChangeEvent<HTMLInputElement>) => {
         const filter = ev.target.value
         const newList = pokemons.filter(pokemon => pokemon.types.some(innerType => innerType.type.name === filter))
         setFilterPokemons(newList)
@@ -47,3 +48,5 @@ const styles = StyleSheet.create({
         marginTop: 10
     }
 })
+
+export default Home

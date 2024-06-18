@@ -1,6 +1,6 @@
-export interface IPokemonItem {
+export interface IPokemonDetails {
+    route: any
     navigation: any
-    item: IItem
 }
 
 export interface IItem {

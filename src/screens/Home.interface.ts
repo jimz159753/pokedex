@@ -1,6 +1,7 @@
-export interface IPokemonItem {
-    navigation: any
-    item: IItem
+import { NavigationProp, ParamListBase } from '@react-navigation/native';
+
+export interface IHome {
+    navigation: NavigationProp<ParamListBase>
 }
 
 export interface IItem {
