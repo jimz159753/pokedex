@@ -2,36 +2,46 @@ import { View, Text, Image, StyleSheet } from 'react-native'
 import React from 'react'
 import { formatNumber, getTypeColor } from '../../utils/helpers'
 
-export default function PokemonDetails({ route }) {
+export default function PokemonDetails({ route, navigation }) {
     const { item } = route.params
     const color = getTypeColor(item.types[0].type.name)
     const styles = getStyles(color)
     const number = formatNumber(item.id)
-    console.log('ITEM', item)
+    const pokeballImg = require('../../../assets/pokeball.png')
+    console.log('item', item)
     return (
         <View>
             <View style={styles.item} onClick={() => navigation.navigate('PokemonDetails', { item: item })}>
+                <Image style={styles.pokeball} source={pokeballImg} />
                 <Image style={styles.image} source={{ uri: item.sprites.other['official-artwork'].front_default }} />
                 <View style={[styles.info, styles.header]}>
-                    <Text style={[styles.text, styles.name]}>{item.name}</Text>
+                    <Text style={[styles.text]}>{item.name}</Text>
                     <Text style={styles.text}>#{number}</Text>
                 </View>
             </View>
-            <View style={styles.types}>
-                {
-                    item.types?.map(el => <Text key={el.slot} style={[styles.text, styles.type]}>{el.type.name}</Text>)
-                }
-            </View>
-            <View>
-                {
-                    item.stats.map(el => <Text>{el.stat.name}: {el.base_stat}</Text>)
-                }
-            </View>
-            <View>
-                <Text>Habilities</Text>
-                {
-                    item.abilities.map(el => <Text>{el.ability.name}</Text>)
-                }
+            <View style={styles.details}>
+                <View style={styles.types}>
+                    {
+                        item.types?.map(el => <Text
+                            key={el.slot}
+                            style={[styles.text, styles.type, { backgroundColor: getTypeColor(el.type.name) }]}>
+                            {el.type.name}
+                        </Text>)
+                    }
+                </View>
+                <View style={styles.stats}>
+                    {
+                        item.stats.map(el => <Text style={styles.textDescription}>{el.stat.name}: {el.base_stat}</Text>)
+                    }
+                </View>
+                <View style={styles.abilities}>
+                    <Text style={styles.abilitiesHeader}>Abilities</Text>
+                    <View style={styles.abilitiesContainer}>
+                        {
+                            item.abilities.map(el => <Text style={styles.textDescription}>{el.ability.name}</Text>)
+                        }
+                    </View>
+                </View>
             </View>
         </View>
     )
@@ -44,16 +54,13 @@ const getStyles = (typeColor: string) =>
             alignItems: 'center',
             backgroundColor: typeColor,
         },
-        name: {
-            fontSize: 18,
-        },
         image: {
             height: 250,
             width: 250
         },
         text: {
-            color: 'black',
-            fontSize: 12,
+            color: 'white',
+            fontSize: 20,
             display: 'flex',
             alignItems: 'center'
         },
@@ -64,15 +71,47 @@ const getStyles = (typeColor: string) =>
         },
         types: {
             marginTop: 10,
+            gap: 10,
             width: '100%',
             flexDirection: 'row',
+            display: 'flex',
+            justifyContent: 'center'
         },
         type: {
-            opacity: 0.5,
             borderRadius: 25,
             backgroundColor: 'white',
-            paddingHorizontal: 8,
-            paddingVertical: 2,
+            paddingHorizontal: 10,
+            paddingBottom: 5,
             marginRight: 2
+        },
+        details: {
+            paddingHorizontal: 50
+        },
+        stats: {
+            marginTop: 30,
+
+        },
+        textDescription: {
+            fontSize: 25
+        },
+        abilitiesHeader: {
+            marginVertical: 30,
+            fontSize: 30
+        },
+        abilities: {
+            display: 'flex',
+            alignItems: 'center'
+        },
+        abilitiesContainer: {
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            gap: 15
+
+        },
+        pokeball: {
+            position: 'absolute',
+            height: 280,
+            width: 300
         }
     });

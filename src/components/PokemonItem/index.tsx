@@ -7,6 +7,7 @@ const PokemonItem = ({ item, navigation }: IPokemonItem) => {
     const color = getTypeColor(item.types[0].type.name)
     const styles = getStyles(color)
     const number = formatNumber(item.id)
+
     return (
         <View style={styles.item} onClick={() => navigation.navigate('PokemonDetails', { item: item })}>
             <Image style={styles.image} source={{ uri: item.sprites.other['official-artwork'].front_default }} />
