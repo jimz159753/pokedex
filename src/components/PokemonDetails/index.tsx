@@ -9,6 +9,7 @@ export default function PokemonDetails({ route, navigation }: IPokemonDetails) {
     const styles = getStyles(color)
     const number = formatNumber(item.id)
     const pokeballImg = require('../../../assets/pokeball.png')
+    const pokeBackground = require('../../../assets/background.png')
 
     return (
         <View>
@@ -45,6 +46,7 @@ export default function PokemonDetails({ route, navigation }: IPokemonDetails) {
                         }
                     </View>
                 </View>
+                <Image style={styles.pokeBackground} source={pokeBackground} />
             </View>
         </View>
     )
@@ -116,5 +118,10 @@ const getStyles = (typeColor: string) =>
             position: 'absolute',
             height: 280,
             width: 300
+        },
+        pokeBackground: {
+            width: '100%',
+            height: 120,
+            marginVertical: 15
         }
     });
