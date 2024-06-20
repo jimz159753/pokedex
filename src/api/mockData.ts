@@ -156,6 +156,6 @@ export const types = [
     { name: 'dragon', url: 'https://pokeapi.co/api/v2/type/16/' },
     { name: 'dark', url: 'https://pokeapi.co/api/v2/type/17/' },
     { name: 'fairy', url: 'https://pokeapi.co/api/v2/type/18/' },
-    { name: 'unknown', url: 'https://pokeapi.co/api/v2/type/10001/' },
-    { name: 'shadow', url: 'https://pokeapi.co/api/v2/type/10002/' }
+    { name: 'stellar', url: 'https://pokeapi.co/api/v2/type/19/' },
+    { name: 'unknown', url: 'https://pokeapi.co/api/v2/type/10001/' }
 ]
