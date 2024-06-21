@@ -7,7 +7,7 @@ const PokemonItem = ({ item, navigation }: IPokemonItem) => {
     const color = getTypeColor(item.types[0].type.name)
     const styles = getStyles(color)
     const number = formatNumber(item.id)
-
+    console.log(item)
     return (
         <TouchableHighlight testID={`item-${item.id}`} style={styles.item} onPress={() => navigation.navigate('PokemonDetails', { item: item })}>
             <View>
