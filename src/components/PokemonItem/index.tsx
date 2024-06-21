@@ -9,7 +9,7 @@ const PokemonItem = ({ item, navigation }: IPokemonItem) => {
     const number = formatNumber(item.id)
 
     return (
-        <TouchableHighlight style={styles.item} onPress={() => navigation.navigate('PokemonDetails', { item: item })}>
+        <TouchableHighlight testID={`item-${item.id}`} style={styles.item} onPress={() => navigation.navigate('PokemonDetails', { item: item })}>
             <View>
                 <Image style={styles.image} source={{ uri: item.sprites.other['official-artwork'].front_default }} />
                 <View style={styles.header}>

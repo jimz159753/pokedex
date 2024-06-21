@@ -1,19 +1,17 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import { IDropdown } from './Dropdown.interface'
+import { Picker } from '@react-native-picker/picker';
 
 const Dropdown = ({ filterByType, types }: IDropdown) =>
-    <select
-        onChange={filterByType}
-        name="pokemons"
-        id='search'
+    <Picker
+        onValueChange={filterByType}
+        testID='search'
         style={styles.search}>
         {
-            types?.map(type => <option key={type.name} value={type.name}>
-                {type.name}
-            </option>)
+            types?.map(type => <Picker.Item key={type.name} value={type.name} label={type.name} />)
         }
-    </select>
+    </Picker>
 
 const styles = StyleSheet.create({
     search: {

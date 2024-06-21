@@ -1,7 +1,7 @@
 import { ChangeEventHandler } from "react"
 
 export interface IDropdown {
-    filterByType: ChangeEventHandler<HTMLSelectElement>
+    filterByType: (value: string) => void
     types: IType[]
 }
 

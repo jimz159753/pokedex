@@ -4,6 +4,7 @@ import { IPokemonList } from './PokemonList.interface';
 
 const PokemonList = ({ pokemons, navigation }: IPokemonList) =>
     <FlatList
+        testID='card-list'
         data={pokemons}
         renderItem={(pokemon) => <PokemonItem item={pokemon.item} navigation={navigation} />}
         keyExtractor={item => item.name}
